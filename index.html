@@ -6,26 +6,56 @@
 <style>
   /* Box Model */
   .caja {
-    width: 150px;
-    height: 150px;
-    margin: 20px;
-    padding: 20px;
-    border: 5px solid black;
+    width: 120px;
+    height: 120px;
+    margin: 10px;
+    padding: 10px;
+    border: 3px solid black;
     color: white;
     font-weight: bold;
     text-align: center;
-    line-height: 110px;
+    line-height: 100px;
   }
   .rojo { background-color: red; }
   .amarillo { background-color: yellow; color: black; }
   .azul { background-color: blue; }
 
   /* Posicionamiento */
-  .static { position: static; background: lightgray; padding: 10px; }
-  .relative { position: relative; left: 30px; background: purple; color: white; padding: 10px; }
-  .absolute { position: absolute; top: 500px; left: 50px; background: green; color: white; padding: 10px; }
-  .fixed { position: fixed; bottom: 10px; right: 10px; background: orange; padding: 10px; }
-  .sticky { position: sticky; top: 0; background: pink; padding: 10px; }
+  .static {
+    position: static;
+    background: teal;
+  }
+  .relative {
+    position: relative;
+    top: 20px;
+    left: 20px;
+    background: purple;
+  }
+  .absolute {
+    position: absolute;
+    top: 200px;
+    left: 200px;
+    background: green;
+  }
+  .fixed {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: orange;
+    color: black;
+  }
+  .sticky {
+    position: sticky;
+    top: 0;
+    background: pink;
+    color: black;
+  }
+
+  body {
+    height: 2000px; /* para que se note el scroll */
+    background: #ddd;
+    padding: 20px;
+  }
 </style>
 </head>
 <body>
@@ -37,11 +67,13 @@
   <div class="caja azul">Azul</div>
 
   <h2>Posicionamiento</h2>
-  <div class="static">Static</div>
-  <div class="relative">Relative (Morado)</div>
-  <div class="absolute">Absolute (Verde)</div>
-  <div class="sticky">Sticky</div>
-  <div style="height:500px;"></div>
-  <div class="fixed">Fixed</div>
+  <div class="caja static">Static</div>
+  <div class="caja relative">Relative</div>
+  <div class="caja absolute">Absolute</div>
+  <div class="caja sticky">Sticky</div>
+
+  <p style="height:800px;"></p> <!-- espacio para scrollear -->
+
+  <div class="caja fixed">Fixed</div>
 </body>
 </html>

@@ -1,18 +1,42 @@
-<!DOCTYPE html>
+<html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Práctico 2 - Posicionamiento (Colores)</title>
+<title>Práctico 2 - Box Model + Posicionamiento</title>
 <style>
+  /* Box Model */
+  .caja {
+    width: 150px;
+    height: 150px;
+    margin: 20px;
+    padding: 20px;
+    border: 5px solid black;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    line-height: 110px;
+  }
+  .rojo { background-color: red; }
+  .amarillo { background-color: yellow; color: black; }
+  .azul { background-color: blue; }
+
+  /* Posicionamiento */
   .static { position: static; background: lightgray; padding: 10px; }
   .relative { position: relative; left: 30px; background: purple; color: white; padding: 10px; }
-  .absolute { position: absolute; top: 150px; left: 50px; background: green; color: white; padding: 10px; }
+  .absolute { position: absolute; top: 500px; left: 50px; background: green; color: white; padding: 10px; }
   .fixed { position: fixed; bottom: 10px; right: 10px; background: orange; padding: 10px; }
   .sticky { position: sticky; top: 0; background: pink; padding: 10px; }
 </style>
 </head>
 <body>
-  <h1>Posicionamiento - Colores Secundarios</h1>
+  <h1>Práctico 2 - Box Model + Posicionamiento</h1>
+
+  <h2>Box Model</h2>
+  <div class="caja rojo">Rojo</div>
+  <div class="caja amarillo">Amarillo</div>
+  <div class="caja azul">Azul</div>
+
+  <h2>Posicionamiento</h2>
   <div class="static">Static</div>
   <div class="relative">Relative (Morado)</div>
   <div class="absolute">Absolute (Verde)</div>

@@ -43,19 +43,12 @@
     background: orange;
     color: black;
   }
-
-  /* Sticky Header */
-  .sticky-header {
+  .sticky {
     position: sticky;
-    top: 0;
-    background: #ffcccb;
+    top: 0; /* <-- se pega a la parte superior */
+    background: pink;
     color: black;
-    padding: 15px;
-    font-size: 20px;
-    text-align: center;
-    font-weight: bold;
-    border: 2px solid #000;
-    z-index: 10; /* para que quede arriba */
+    z-index: 10; /* <-- opcional: asegura que quede arriba de otros elementos */
   }
 
   body {
@@ -68,9 +61,6 @@
 <body>
   <h1>Práctico 2 - Box Model + Posicionamiento</h1>
 
-  <!-- Sticky Header -->
-  <div class="sticky-header">Sticky Header - Se queda pegado al top cuando haces scroll</div>
-
   <h2>Box Model</h2>
   <div class="caja rojo">Rojo</div>
   <div class="caja amarillo">Amarillo</div>
@@ -80,6 +70,9 @@
   <div class="caja static">Static</div>
   <div class="caja relative">Relative</div>
   <div class="caja absolute">Absolute</div>
+  
+  <!-- Sticky visible al hacer scroll -->
+  <div class="caja sticky">Sticky</div>
 
   <p style="height:800px;"></p> <!-- espacio para scrollear -->
 

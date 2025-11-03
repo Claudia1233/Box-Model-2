@@ -1,4 +1,3 @@
-<html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -46,9 +45,10 @@
   }
   .sticky {
     position: sticky;
-    top: 0;
+    top: 0; /* <-- se pega a la parte superior */
     background: pink;
     color: black;
+    z-index: 10; /* <-- opcional: asegura que quede arriba de otros elementos */
   }
 
   body {
@@ -70,6 +70,8 @@
   <div class="caja static">Static</div>
   <div class="caja relative">Relative</div>
   <div class="caja absolute">Absolute</div>
+  
+  <!-- Sticky visible al hacer scroll -->
   <div class="caja sticky">Sticky</div>
 
   <p style="height:800px;"></p> <!-- espacio para scrollear -->
@@ -77,3 +79,4 @@
   <div class="caja fixed">Fixed</div>
 </body>
 </html>
+

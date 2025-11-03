@@ -1,83 +1,23 @@
+<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Práctico 2 - Box Model + Posicionamiento</title>
+<title>Práctico 2 - Posicionamiento (Colores)</title>
 <style>
-  /* Box Model */
-  .caja {
-    width: 120px;
-    height: 120px;
-    margin: 10px;
-    padding: 10px;
-    border: 3px solid black;
-    color: white;
-    font-weight: bold;
-    text-align: center;
-    line-height: 100px;
-  }
-  .rojo { background-color: red; }
-  .amarillo { background-color: yellow; color: black; }
-  .azul { background-color: blue; }
-
-  /* Posicionamiento */
-  .static {
-    position: static;
-    background: teal;
-  }
-  .relative {
-    position: relative;
-    top: 20px;
-    left: 20px;
-    background: purple;
-  }
-  .absolute {
-    position: absolute;
-    top: 200px;
-    left: 200px;
-    background: green;
-  }
-  .fixed {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: orange;
-    color: black;
-  }
-  .sticky {
-    position: sticky;
-    top: 0; /* <-- se pega a la parte superior */
-    background: pink;
-    color: black;
-    z-index: 10; /* <-- opcional: asegura que quede arriba de otros elementos */
-  }
-
-  body {
-    height: 2000px; /* para que se note el scroll */
-    background: #ddd;
-    padding: 20px;
-  }
+  .static { position: static; background: lightgray; padding: 10px; }
+  .relative { position: relative; left: 30px; background: purple; color: white; padding: 10px; }
+  .absolute { position: absolute; top: 150px; left: 50px; background: green; color: white; padding: 10px; }
+  .fixed { position: fixed; bottom: 10px; right: 10px; background: orange; padding: 10px; }
+  .sticky { position: sticky; top: 0; background: pink; padding: 10px; }
 </style>
 </head>
 <body>
-  <h1>Práctico 2 - Box Model + Posicionamiento</h1>
-
-  <h2>Box Model</h2>
-  <div class="caja rojo">Rojo</div>
-  <div class="caja amarillo">Amarillo</div>
-  <div class="caja azul">Azul</div>
-
-  <h2>Posicionamiento</h2>
-  <div class="caja static">Static</div>
-  <div class="caja relative">Relative</div>
-  <div class="caja absolute">Absolute</div>
-  
-  <!-- Sticky visible al hacer scroll -->
-  <div class="caja sticky">Sticky</div>
-
-  <p style="height:800px;"></p> <!-- espacio para scrollear -->
-
-  <div class="caja fixed">Fixed</div>
+  <h1>Posicionamiento - Colores Secundarios</h1>
+  <div class="static">Static</div>
+  <div class="relative">Relative (Morado)</div>
+  <div class="absolute">Absolute (Verde)</div>
+  <div class="sticky">Sticky</div>
+  <div style="height:500px;"></div>
+  <div class="fixed">Fixed</div>
 </body>
 </html>
-
-

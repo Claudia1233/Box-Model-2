@@ -1,89 +1,119 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Ejemplo Posicionamiento CSS</title>
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-  }
-  /* Posicionamiento static (por defecto) */
-  .static {
-    background-color: #f2a365;
-    padding: 10px;
-    margin: 10px;
-  }
-  /* Posicionamiento relative */
-  .relative {
-    position: relative;
-    background-color: #f28c8c;
-    padding: 10px;
-    margin: 10px;
-    top: 10px; /* se mueve 10px desde su posición original */
-    left: 20px;
-  }
-  /* Posicionamiento absolute */
-  .absolute {
-    position: absolute;
-    background-color: #6ab04c;
-    padding: 10px;
-    width: 150px;
-    top: 80px;
-    right: 10px;
-  }
-  /* Posicionamiento fixed */
-  .fixed {
-    position: fixed;
-    background-color: #2980b9;
-    color: white;
-    padding: 10px;
-    width: 100%;
-    top: 0;
-    left: 0;
-  }
-  /* Posicionamiento sticky */
-  .sticky-container {
-    height: 200px;
-    overflow: auto;
-    border: 2px solid #333;
-    margin: 10px;
-  }
-  .sticky {
-    position: sticky;
-    top: 0;
-    background-color: #f9ca24;
-    padding: 10px;
-    font-weight: bold;
-  }
-  .content {
-    height: 600px;
-    padding: 10px;
-  }
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Práctico 2 — Posicionamiento CSS</title>
+  <style>
+    /* Estilos comunes */
+    body{font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; margin:0; padding:0; line-height:1.4}
+    .page{padding: 100px 20px 80px;} /* dejar espacio para header y footer fixed */
+
+    /* Fixed: siempre permanece visible respecto a la ventana */
+    header.fixed-header{
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 60px;
+      background: linear-gradient(90deg,#0ea5a4,#2563eb);
+      color: white; display:flex; align-items:center; gap:12px; padding:0 20px; box-shadow:0 2px 6px rgba(0,0,0,0.15);
+      z-index: 1000;
+    }
+
+    /* Footer fijo */
+    footer.fixed-footer{
+      position: fixed; bottom: 0; left:0; right:0; height:40px; background:#111827; color:#fff; display:flex; align-items:center; justify-content:center; font-size:14px;
+    }
+
+    h1{margin:0; font-size:20px}
+
+    section.example{max-width:1000px; margin:24px auto; background:#f8fafc; padding:20px; border-radius:8px; box-shadow:0 1px 4px rgba(0,0,0,0.05);}
+    .desc{color:#374151; margin-bottom:12px}
+
+    .box{padding:14px; border-radius:6px; background:white; border:1px dashed rgba(0,0,0,0.08); margin-bottom:12px}
+
+    /* ---- Static (por defecto) ---- */
+    .static { /* position: static es el valor por defecto, no hace falta declararlo */ }
+
+    /* ---- Relative ---- */
+    .relative.example-box{position: relative; background:#fff7ed; border:1px solid #ffd8a8}
+    .relative .moved{position: relative; left: 20px; top: 8px; background:#fff; padding:8px; border-radius:4px}
+
+    /* ---- Absolute (referida al ancestro posicionado) ---- */
+    .relative-container{position: relative; height:180px; background:#eef2ff; border:1px solid #c7d2fe}
+    .absolute-box{position: absolute; right: 16px; bottom: 12px; background:#fff; padding:8px 12px; border-radius:6px; box-shadow:0 2px 6px rgba(2,6,23,0.08)}
+
+    /* ---- Sticky ---- */
+    .content-grid{display:grid; grid-template-columns: 1fr 260px; gap:16px}
+    .article{background:#fff; padding:16px; min-height:800px}
+    .sidebar{height:fit-content}
+    .sticky-card{position: sticky; top: 80px; padding:12px; border-radius:6px; background:#f1f5f9; border:1px solid #e2e8f0}
+
+    /* Helpers para mostrar posición en pantalla */
+    .label{font-weight:600; font-size:13px; color:#0f172a}
+
+    /* Estética */
+    pre{background:#0b1220; color:#e6eef8; padding:12px; border-radius:6px; overflow:auto}
+
+    @media (max-width:800px){
+      .content-grid{grid-template-columns: 1fr}
+      .sticky-card{position: relative; top: auto}
+    }
+  </style>
 </head>
 <body>
+  <header class="fixed-header">
+    <h1>Práctico 2 — Posicionamiento</h1>
+    <small style="opacity:.9;margin-left:8px">static • relative • absolute • fixed • sticky</small>
+  </header>
 
-<div class="fixed">Fixed: Barra fija en la parte superior</div>
+  <main class="page">
+    <section class="example">
+      <div class="desc"><span class="label">Static (por defecto)</span> — los elementos siguen el flujo normal del documento.</div>
+      <div class="box static">
+        <p>Este párrafo está en posición <strong>static</strong> (valor por defecto). No se ha aplicado ninguna propiedad top/right/bottom/left sobre él.</p>
+      </div>
 
-<div class="static">Static: Este es el posicionamiento por defecto.</div>
+      <div class="desc"><span class="label">Relative</span> — se desplaza respecto a su posición normal, pero sigue ocupando su espacio original en el flujo.</div>
+      <div class="box relative example-box">
+        <p class="label">Contenedor (position: relative)</p>
+        <div class="moved">Este elemento tiene <code>position: relative</code> y se ha movido <code>left:20px; top:8px;</code>. El espacio original se mantiene.</div>
+      </div>
 
-<div class="relative">Relative: Se desplaza 10px hacia abajo y 20px a la derecha desde su posición normal.</div>
+      <div class="desc"><span class="label">Absolute</span> — se posiciona respecto al ancestro posicionado más cercano (ej. algún ancestro con position distinto a static).</div>
+      <div class="box">
+        <div class="relative-container">
+          <p class="label">Contenedor con <code>position: relative</code> (referencia para el absolute)</p>
+          <div class="absolute-box">Soy <code>position: absolute</code> — estoy anclado a la esquina inferior derecha del contenedor.</div>
+        </div>
+      </div>
 
-<div class="absolute">Absolute: Posicionado respecto al contenedor con posición relativa o al body, ubicado en la esquina superior derecha (80px desde arriba, 10px desde derecha).</div>
+      <div class="desc"><span class="label">Sticky</span> — se comporta como relative hasta que la página se desplaza hasta un umbral; entonces se fija como si fuera <code>position:fixed</code> dentro de su contenedor.</div>
+      <div class="box content-grid">
+        <article class="article">
+          <h2>Artículo largo (para hacer scroll)</h2>
+          <p>Repite texto para que haya scroll y ver el comportamiento <em>sticky</em>:</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit, illum. (repite varias veces)...</p>
+          <p style="height:900px; opacity:0.6">(espacio vertical extra para poder desplazar)</p>
+        </article>
+        <aside class="sidebar">
+          <div class="sticky-card">
+            <p class="label">Tarjeta <code>position: sticky; top:80px;</code></p>
+            <p>Cuando haces scroll, esta tarjeta se pega a la parte superior de la ventana hasta que el contenedor deje de tener espacio.</p>
+          </div>
+        </aside>
+      </div>
 
-<div class="sticky-container">
-  <div class="sticky">Sticky: Queda pegado en la parte superior cuando se desplaza dentro del contenedor.</div>
-  <div class="content">
-    Contenido largo para poder hacer scroll y ver el efecto sticky.<br/>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur placerat odio vel augue consequat, vestibulum scelerisque dui sollicitudin. Suspendisse potenti. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin tincidunt quam in elit congue, sit amet convallis magna efficitur.
-    <br/><br/>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur placerat odio vel augue consequat, vestibulum scelerisque dui sollicitudin. Suspendisse potenti. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin tincidunt quam in elit congue, sit amet convallis magna efficitur.
-  </div>
-</div>
+      <div class="desc"><span class="label">Fixed</span> — fijado respecto a la ventana del navegador; no se mueve al hacer scroll (ej. header o footer).</div>
+      <div class="box">
+        <p>El encabezado superior (con fondo colorido) y el pie de página están <code>position: fixed</code> — siempre visibles.</p>
+      </div>
 
+      <hr>
+      <p>Fragmento de ejemplo del código usado para la tarjeta sticky:</p>
+      <pre>&lt;div class="sticky-card" style="position:sticky; top:80px;"&gt;Contenido pegajoso&lt;/div&gt;</pre>
+    </section>
+  </main>
+
+  <footer class="fixed-footer">Ejemplo práctico — Posicionamiento CSS</footer>
 </body>
 </html>
-

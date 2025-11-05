@@ -1,23 +1,164 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<title>Práctico 2 - Posicionamiento (Colores)</title>
-<style>
-  .static { position: static; background: lightgray; padding: 10px; }
-  .relative { position: relative; left: 30px; background: purple; color: white; padding: 10px; }
-  .absolute { position: absolute; top: 150px; left: 50px; background: green; color: white; padding: 10px; }
-  .fixed { position: fixed; bottom: 10px; right: 10px; background: orange; padding: 10px; }
-  .sticky { position: sticky; top: 0; background: pink; padding: 10px; }
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Ejemplo de Posicionamiento</title>
+  <style>
+    /* Reset básico */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* Página y fondo */
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: #f5f5f5;
+      padding: 20px;
+      color: #222;
+    }
+
+    h1 {
+      font-size: 18px;
+      margin-bottom: 12px;
+    }
+
+    /* Contenedor grande que hace de "escenario" (simula el área gris de la imagen) */
+    .stage {
+      background: #e6e6e6; /* gris claro */
+      border: 1px solid #cfcfcf;
+      height: 900px; /* suficiente para hacer scroll y ver sticky */
+      padding: 18px;
+      position: relative; /* referencia para elementos absolute dentro */
+      overflow: auto;
+    }
+
+    /* Un pequeño encabezado dentro del stage */
+    .stage-header {
+      background: transparent;
+      padding-bottom: 12px;
+    }
+
+    /* Estilo común para las cajas de ejemplo */
+    .box {
+      width: 90px;
+      height: 60px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #0b0b0b;
+      font-weight: 600;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.06);
+    }
+
+    /* Cada tipo con su color */
+    .static { background: #9ad3d6; }   /* turquesa */
+    .relative { background: #f7a8a8; } /* rosa */
+    .absolute { background: #32a89d; color: #fff; } /* verde oscuro */
+    .fixed { background: #f8f1a3; }    /* amarillo claro */
+    .sticky { background: #3fa9f5; color: #fff; }  /* celeste */
+
+    /* ********************
+       Posiciones (demostración)
+       ********************/
+
+    /* static: sin especificar position (flujo normal) */
+    .box.static {
+      margin-bottom: 12px; /* separa del resto en flujo normal */
+    }
+
+    /* relative: se desplaza visualmente pero ocupa su lugar original en el flujo */
+    .box.relative {
+      position: relative;
+      top: 10px;   /* desplazamiento respecto a su posición original */
+      left: 12px;
+      margin-bottom: 12px;
+    }
+
+    /* absolute: se posiciona respecto al contenedor .stage (que tiene position:relative) */
+    .box.absolute {
+      position: absolute;
+      top: 80px;
+      left: 140px;
+      width: 85px;
+      height: 55px;
+    }
+
+    /* sticky: se "pega" cuando alcanza el top dentro del contenedor scrollable */
+    .box.sticky {
+      position: -webkit-sticky; /* compatibilidad Safari */
+      position: sticky;
+      top: 12px; /* distancia desde la parte superior del contenedor al pegarse */
+      margin-bottom: 12px;
+    }
+
+    /* fixed: se fija respecto a la ventana (viewport) - siempre visible */
+    .box.fixed {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      width: 100px;
+      height: 70px;
+      z-index: 999;
+    }
+
+    /* Una columna de contenido para ver el flujo natural y provocar scroll */
+    .flow {
+      max-width: 320px;
+      line-height: 1.4;
+    }
+
+    .spacer {
+      height: 700px; /* crea altura para que se note el sticky al hacer scroll */
+    }
+
+    /* Estilos responsivos: en pantallas pequeñas reacomodar un poco */
+    @media (max-width: 480px) {
+      .stage { height: 700px; padding: 12px; }
+      .box { width: 78px; height: 52px; font-size: 13px; }
+      .box.fixed { right: 12px; bottom: 12px; width: 86px; height: 64px; }
+      .box.absolute { left: 20px; top: 150px; }
+    }
+  </style>
 </head>
 <body>
-  <h1>Posicionamiento - Colores Secundarios</h1>
-  <div class="static">Static</div>
-  <div class="relative">Relative (Morado)</div>
-  <div class="absolute">Absolute (Verde)</div>
-  <div class="sticky">Sticky</div>
-  <div style="height:500px;"></div>
-  <div class="fixed">Fixed</div>
+
+  <h1>Ejemplo de Posicionamiento</h1>
+
+  <div class="stage" id="stage">
+    <!-- Encabezado / columna de descripción -->
+    <div class="stage-header">
+      <div class="flow">
+        <p>En este recuadro se muestran cajas con distintos tipos de posicionamiento CSS.
+           Redimensiona la ventana y desplázate para ver <strong>sticky</strong> y <strong>fixed</strong>.</p>
+      </div>
+    </div>
+
+    <!-- Caja en flujo normal (static) -->
+    <div class="box static">Static</div>
+
+    <!-- Caja en flujo desplazada visualmente (relative) -->
+    <div class="box relative">Relative</div>
+
+    <!-- Caja que se posiciona respecto al contenedor (absolute) -->
+    <div class="box absolute">Absolute</div>
+
+    <!-- Caja que se pega al top del contenedor cuando haces scroll (sticky) -->
+    <div class="box sticky">Sticky</div>
+
+    <!-- más contenido de ejemplo para forzar el scroll dentro del .stage -->
+    <div class="spacer">
+      <!-- Aquí hay texto largo simulado para ver comportamiento en distintas ventanas -->
+      <p style="padding: 6px 0 0 0; max-width:640px;">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero.
+        Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet.
+        Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa.
+        Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra.
+      </p>
+    </div>
+
+    <!-- Caja fija respecto al viewport (fixed) -->
+    <div class="box fixed">Fixed</div>
+  </div>
+
 </body>
 </html>
